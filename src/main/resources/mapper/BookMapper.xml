@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jerry.labsystem.dao.BookMapper">
+    <resultMap id="result" type="com.jerry.labsystem.pojo.Book">
+        <id column="id" property="id" />
+        <result column="labId" property="labId" />
+        <result column="bookTime" property="bookTime" />
+        <result column="bookClass" property="bookClass" />
+        <result column="bookReason" property="bookReason" />
+        <result column="bookState" property="bookState" />
+        <result column="bookUsername" property="bookUsername" />
+        <association property="lab" javaType="com.jerry.labsystem.pojo.Lab" select="getLab" column="labId" />
+    </resultMap>
+
+    <select id="getLab" resultType="com.jerry.labsystem.pojo.Lab">
+        SELECT *
+        FROM labs
+        WHERE id = #{any_id}
+    </select>
+
+    <select id="getBookList" resultMap="result">
+        SELECT *
+        FROM books
+        <where>
+            <if test="labId != null">
+                and labId = #{labId}
+            </if>
+            <if test="bookUsername != null and bookUsername != ''">
+                and bookUsername = #{bookUsername}
+            </if>
+            <if test="bookState != null">
+                and bookState = #{bookState}
+                and bookTime >= curdate() -- 时间需要大于今天才需要去审核
+            </if>
+            <if test="bookTime != null">
+                and bookTime = #{bookTime}
+                and bookState != 2
+            </if>
+        </where>
+        ORDER BY bookTime, bookClass ASC
+    </select>
+
+    <insert id="addBookList" parameterType="com.jerry.labsystem.pojo.Book">
+        INSERT INTO books
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="labId != null">
+                labId,
+            </if>
+            <if test="bookTime != null">
+                bookTime,
+            </if>
+            <if test="bookClass != null">
+                bookClass,
+            </if>
+            <if test="bookReason != null">
+                bookReason,
+            </if>
+            <if test="bookUsername != null">
+                bookUsername,
+            </if>
+            <if test="bookState != null">
+                bookState,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="labId != null">
+                #{labId},
+            </if>
+            <if test="bookTime != null">
+                #{bookTime},
+            </if>
+            <if test="bookClass != null">
+                #{bookClass},
+            </if>
+            <if test="bookReason != null">
+                #{bookReason},
+            </if>
+            <if test="bookUsername != null">
+                #{bookUsername},
+            </if>
+            <if test="bookState != null">
+                #{bookState},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateBookList">
+        update books
+        <set>
+            <if test="labId != null">
+                labId = #{labId},
+            </if>
+            <if test="bookTime != null">
+                bookTime = #{bookTime},
+            </if>
+            <if test="bookClass != null">
+                bookClass = #{bookClass},
+            </if>
+            <if test="bookReason != null and bookReason != ''">
+                bookReason = #{bookReason},
+            </if>
+            <if test="bookUsername != null and bookUsername != ''">
+                bookUsername = #{bookUsername},
+            </if>
+            <if test="bookState != null">
+                bookState = #{bookState}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBookList">
+        DELETE
+        FROM books
+        WHERE id = #{id}
+    </delete>
+</mapper>

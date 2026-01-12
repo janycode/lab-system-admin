@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jerry.labsystem.dao.RoleMapper">
+    <resultMap id="menuTree" type="com.jerry.labsystem.pojo.Role">
+        <id column="id" property="id"/>
+        <result column="roleName" property="roleName"/>
+        <result column="roleType" property="roleType"/>
+        <result column="rights" property="rights"/>
+    </resultMap>
+
+    <select id="getRoleList" resultMap="menuTree">
+        SELECT id, roleName, roleType, rights
+        FROM roles
+    </select>
+
+    <update id="updateRoleList">
+        update roles
+        <set>
+            <if test="roleName != null">
+                roleName = #{roleName},
+            </if>
+            <if test="rights != null">
+                rights = #{rights}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteRoleList">
+        DELETE
+        FROM roles
+        WHERE id = #{id}
+    </delete>
+</mapper>

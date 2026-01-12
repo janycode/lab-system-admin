@@ -9,6 +9,10 @@ spring:
     username: root
     password: 123456
 
+  # 暴露可访问的路径（用于直接访问静态资源，如图片）
+  mvc:
+    static-path-pattern: /static/**
+
 # mybatis 配置映射 xml 文件，并配置打印sql语句
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
@@ -21,6 +25,6 @@ config:
     # 自定义的加盐字符串
     secret: jerry_define_code
     # 过期时间（秒）：1小时
-    expire: 60
+    expire: 3600
     # header中的字段
     header: token

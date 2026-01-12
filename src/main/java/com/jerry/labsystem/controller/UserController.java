@@ -1,5 +1,6 @@
 package com.jerry.labsystem.controller;
 
+import com.jerry.labsystem.config.JwtConfig;
 import com.jerry.labsystem.pojo.User;
 import com.jerry.labsystem.service.UserService;
 import com.jerry.labsystem.utils.ResultObj;
@@ -16,6 +17,8 @@ public class UserController {
 
     @Autowired
     private UserService<User> userService;
+    @Autowired
+    private JwtConfig jwtConfig;
 
     @GetMapping("/list")
     public List<User> getUserList(User user) {
@@ -61,7 +64,12 @@ public class UserController {
             if (CollectionUtils.isEmpty(userList)) {
                 throw new RuntimeException();
             }
-            return new ResultObj(SysConstant.CODE_SUCCESS, SysConstant.LOGIN_SUCCESS, userList.get(0));
+            //登陆用户
+            User loginUser = userList.get(0);
+            String token = jwtConfig.createToken(loginUser.getUsername());
+            loginUser.setToken(token);
+
+            return new ResultObj(SysConstant.CODE_SUCCESS, SysConstant.LOGIN_SUCCESS, loginUser);
         } catch (RuntimeException e) {
             return new ResultObj(SysConstant.CODE_ERROR, SysConstant.LOGIN_ERROR);
         }

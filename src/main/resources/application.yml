@@ -14,3 +14,13 @@ mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   configuration:
    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+# JWT 配置
+config:
+  jwt:
+    # 自定义的加盐字符串
+    secret: jerry_define_code
+    # 过期时间（秒）：1小时
+    expire: 60
+    # header中的字段
+    header: token

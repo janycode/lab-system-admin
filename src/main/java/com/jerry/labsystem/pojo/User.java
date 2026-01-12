@@ -14,4 +14,8 @@ public class User {
     private Integer roleId;
     private Integer isDefault;
     private Role role;
+    /**
+     * 补充 token 字段
+     */
+    private String token;
 }

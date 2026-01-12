@@ -1,7 +1,8 @@
-package com.jerry.labsystem.service;
+package com.jerry.labsystem.service.impl;
 
 import com.jerry.labsystem.dao.UserMapper;
 import com.jerry.labsystem.pojo.User;
+import com.jerry.labsystem.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

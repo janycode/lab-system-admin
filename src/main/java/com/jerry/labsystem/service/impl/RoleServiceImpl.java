@@ -1,7 +1,8 @@
-package com.jerry.labsystem.service;
+package com.jerry.labsystem.service.impl;
 
 import com.jerry.labsystem.dao.RoleMapper;
 import com.jerry.labsystem.pojo.Role;
+import com.jerry.labsystem.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,8 @@
-package com.jerry.labsystem.service;
+package com.jerry.labsystem.service.impl;
 
 import com.jerry.labsystem.dao.RightMapper;
 import com.jerry.labsystem.pojo.Right;
+import com.jerry.labsystem.service.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

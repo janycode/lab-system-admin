@@ -1,5 +1,7 @@
 package com.jerry.labsystem.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.jerry.labsystem.config.JwtConfig;
 import com.jerry.labsystem.pojo.User;
 import com.jerry.labsystem.service.UserService;
@@ -23,6 +25,18 @@ public class UserController {
     @GetMapping("/list")
     public List<User> getUserList(User user) {
         return userService.getUserList(user);
+    }
+
+    @GetMapping("/listPage")
+    public PageInfo<User> getUserListPage(User user,
+                                          @RequestParam(defaultValue = "1") Integer pageNum,
+                                          @RequestParam(defaultValue = "10") Integer pageSize
+    ) {
+        //添加 PageHelper 的页码和页长的注入，后面sql查询时会自动追加 limit 页码,页长
+        PageHelper.startPage(pageNum, pageSize);
+        List<User> userList = userService.getUserList(user);
+        //返回PageInfo对象
+        return new PageInfo<>(userList);
     }
 
     @PostMapping("/add")

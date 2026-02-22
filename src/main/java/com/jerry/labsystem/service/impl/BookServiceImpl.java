@@ -3,14 +3,20 @@ package com.jerry.labsystem.service.impl;
 import com.jerry.labsystem.dao.BookMapper;
 import com.jerry.labsystem.pojo.Book;
 import com.jerry.labsystem.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 图书服务 impl
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Service
 public class BookServiceImpl implements BookService<Book> {
-    @Autowired
+    @Resource
     private BookMapper<Book> bookMapper;
 
     @Override

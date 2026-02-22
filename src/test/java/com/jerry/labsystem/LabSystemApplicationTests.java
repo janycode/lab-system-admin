@@ -15,7 +15,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 @SpringBootTest
-class LabsystemApplicationTests {
+class LabSystemApplicationTests {
 
     @Autowired
     private RightMapper<Right> rightMapper;

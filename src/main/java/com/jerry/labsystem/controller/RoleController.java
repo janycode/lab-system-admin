@@ -6,13 +6,20 @@ import com.jerry.labsystem.utils.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 角色接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/roles")
 public class RoleController {
 
-    @Autowired
+    @Resource
     private RoleService<Role> roleService;
 
     @GetMapping("/list")
@@ -20,7 +27,7 @@ public class RoleController {
         return roleService.getRoleList();
     }
 
-    // /admin/rols/3
+    // /admin/roles/3
     @PutMapping(value = "/{id}")
     public ResultObj updateRoleList(@PathVariable Integer id, @RequestBody Role role) {
         try {

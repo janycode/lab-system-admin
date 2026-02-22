@@ -92,7 +92,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.jerry.labsystem.LabsystemApplication</mainClass>
+                    <mainClass>com.jerry.labsystem.LabSystemApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>

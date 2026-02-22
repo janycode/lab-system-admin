@@ -3,16 +3,23 @@ package com.jerry.labsystem.controller;
 import com.jerry.labsystem.pojo.Book;
 import com.jerry.labsystem.service.BookService;
 import com.jerry.labsystem.utils.ResultObj;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+
+/**
+ * 图书接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/books")
 public class BookController {
 
-    @Autowired
+    @Resource
     private BookService<Book> labService;
 
     @GetMapping("/list")
@@ -35,7 +42,7 @@ public class BookController {
         return labService.getBookList(book);
     }
 
-    // /admin/rols/3
+    // /admin/roles/3
     @PutMapping(value = "/{id}")
     public ResultObj updateBookList(@PathVariable Integer id, @RequestBody Book book) {
         try {

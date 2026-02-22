@@ -3,17 +3,24 @@ package com.jerry.labsystem.controller;
 import com.jerry.labsystem.pojo.Right;
 import com.jerry.labsystem.service.RightService;
 import com.jerry.labsystem.utils.ResultObj;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 权限接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/rights")
 public class RightController {
 
-    @Autowired
+    @Resource
     private RightService<Right> rightService;
+
     @GetMapping("/list")
     public List<Right> getRightList() {
         return rightService.getRightList();

@@ -6,12 +6,19 @@ import com.jerry.labsystem.service.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 权限服务impl
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Service
 public class RightServiceImpl implements RightService<Right> {
 
-    @Autowired
+    @Resource
     private RightMapper<Right> rightMapper;
 
     @Override

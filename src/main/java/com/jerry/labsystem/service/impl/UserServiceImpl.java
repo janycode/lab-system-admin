@@ -3,14 +3,20 @@ package com.jerry.labsystem.service.impl;
 import com.jerry.labsystem.dao.UserMapper;
 import com.jerry.labsystem.pojo.User;
 import com.jerry.labsystem.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 用户服务 impl
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Service
 public class UserServiceImpl implements UserService<User> {
-    @Autowired
+    @Resource
     private UserMapper<User> userMapper;
 
     @Override

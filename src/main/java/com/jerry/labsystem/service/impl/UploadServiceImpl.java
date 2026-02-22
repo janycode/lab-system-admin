@@ -8,6 +8,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 上传服务 impl
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Service
 public class UploadServiceImpl implements UploadService {
 
@@ -27,7 +33,8 @@ public class UploadServiceImpl implements UploadService {
         System.out.println("fullFilePath = " + fullFilePath);
         File dist = new File(fullFilePath);
         if (!dist.getParentFile().exists()) {
-            dist.getParentFile().mkdirs();
+            boolean res = dist.getParentFile().mkdirs();
+            System.out.println("res = " + res);
         }
         //上传
         file.transferTo(dist);

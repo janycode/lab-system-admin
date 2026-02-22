@@ -1,14 +1,21 @@
 package com.jerry.labsystem.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
+
+/**
+ * 网页配置
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
-    @Autowired
+    @Resource
     private TokenInterceptor tokenInterceptor;
 
     /**

@@ -1,25 +1,25 @@
 package com.jerry.labsystem.config;
 
-import com.jerry.labsystem.pojo.User;
-import com.jerry.labsystem.service.UserService;
+import com.github.pagehelper.util.StringUtil;
 import io.jsonwebtoken.Claims;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
+/**
+ * 令牌拦截器
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Component
 public class TokenInterceptor implements HandlerInterceptor {
-    @Autowired
+    @Resource
     private JwtConfig jwtConfig;
-    @Autowired
-    private UserService<User> userService;
 
     /**
      * 进入controller方法之前调用
@@ -29,7 +29,7 @@ public class TokenInterceptor implements HandlerInterceptor {
      * @param handler  内容
      * @return boolean
      * @author Jerry(姜源)
-     * @date 2026/01/12
+     * @since 2026/02/22
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -42,16 +42,16 @@ public class TokenInterceptor implements HandlerInterceptor {
 
         // 处理 token
         String token = request.getHeader(jwtConfig.getHeader());
-        if (StringUtils.isEmpty(token)) {
+        if (StringUtil.isEmpty(token)) {
             token = request.getParameter(jwtConfig.getHeader());
         }
-        if (StringUtils.isEmpty(token)) {
+        if (StringUtil.isEmpty(token)) {
             // 返回401，token不能为空
             sendError(response, "token 不能为空");
             return false;
         }
 
-        Claims tokenClaim = null;
+        Claims tokenClaim;
         try {
             // 校验 token 是否有被篡改
             tokenClaim = jwtConfig.getTokenClaim(token);

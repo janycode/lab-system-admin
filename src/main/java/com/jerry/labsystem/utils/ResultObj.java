@@ -2,6 +2,12 @@ package com.jerry.labsystem.utils;
 
 import lombok.Data;
 
+/**
+ * 结果 OBJ
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Data
 public class ResultObj {
     private Integer code;

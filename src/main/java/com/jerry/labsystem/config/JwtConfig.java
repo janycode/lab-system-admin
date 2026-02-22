@@ -7,6 +7,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ * JWT 配置
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @Data
 @Component
 @ConfigurationProperties(prefix = "config.jwt", ignoreInvalidFields = true)

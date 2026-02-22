@@ -7,19 +7,26 @@ import com.jerry.labsystem.pojo.User;
 import com.jerry.labsystem.service.UserService;
 import com.jerry.labsystem.utils.ResultObj;
 import com.jerry.labsystem.utils.SysConstant;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+
+/**
+ * 用户接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/users")
 public class UserController {
 
-    @Autowired
+    @Resource
     private UserService<User> userService;
-    @Autowired
+    @Resource
     private JwtConfig jwtConfig;
 
     @GetMapping("/list")
@@ -49,7 +56,7 @@ public class UserController {
         }
     }
 
-    // /admin/rols/3
+    // /admin/roles/3
     @PutMapping(value = "/{id}")
     public ResultObj updateUserList(@PathVariable Integer id, @RequestBody User user) {
         try {

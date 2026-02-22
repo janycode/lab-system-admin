@@ -10,13 +10,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 
+/**
+ * 上传接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/upload")
 public class UploadController {
 
-    @Autowired
+    @Resource
     private UploadService uploadService;
 
     @PostMapping

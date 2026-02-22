@@ -6,12 +6,19 @@ import com.jerry.labsystem.utils.ResultObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 实验室接口
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 @RestController
 @RequestMapping("/admin/labs")
 public class LabController {
-    @Autowired
+    @Resource
     private LabService<Lab> labService;
 
     @GetMapping("/list")
@@ -29,7 +36,7 @@ public class LabController {
         }
     }
 
-    // /admin/rols/3
+    // /admin/roles/3
     @PutMapping(value = "/{id}")
     public ResultObj updateLabList(@PathVariable Integer id, @RequestBody Lab lab) {
         try {

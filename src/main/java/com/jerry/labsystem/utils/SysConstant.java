@@ -1,5 +1,11 @@
 package com.jerry.labsystem.utils;
 
+/**
+ * 系统常数
+ *
+ * @author Jerry(姜源)
+ * @since 2026/02/22
+ */
 public interface SysConstant {
     Integer CODE_SUCCESS = 0;
     Integer CODE_ERROR = -1;
